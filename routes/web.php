@@ -39,6 +39,36 @@ Route::get('admin/posts/example', array('as'=>'admin.home',  function () {
 
 /* Route::resource('posts', 'PostsController'); */
 
-Route::get('/contact', 'PostsController@contact');
+/* Route::get('/contact', 'PostsController@contact');
 
-Route::get('/post/{id}', 'PostsController@showPost');
+Route::get('/post/{id}', 'PostsController@showPost'); */
+
+// DATABASE RAW SQL QUERIES
+
+/* Route::get('/insert', function () {
+    
+    DB::insert('insert into posts (title, content) values (?, ?)', ['PHP with Laravel', 'Laravellaravellaravellaravel']);
+
+}); */
+
+/* Route::get('/read', function () {
+
+    $results = DB::select('select * from posts where id = ?', [1]);
+
+    foreach ($results as $result) {
+        return $result->title;
+    };
+}); */
+
+/* Route::get('/update', function () {
+    
+    $updated = DB::update('update posts set title = "Update title" where id = ?', [1]);
+
+    return $updated;
+
+}); */
+
+/* Route::get('/delete', function () {
+    $deleted = DB::delete('delete from posts where id = ?', [1]);
+    return $deleted;
+}); */
