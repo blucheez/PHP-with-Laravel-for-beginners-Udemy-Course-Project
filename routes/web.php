@@ -1,5 +1,7 @@
 <?php
 
+use App\Post;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,11 +47,11 @@ Route::get('/post/{id}', 'PostsController@showPost'); */
 
 // DATABASE RAW SQL QUERIES
 
-/* Route::get('/insert', function () {
+Route::get('/insert', function () {
     
     DB::insert('insert into posts (title, content) values (?, ?)', ['PHP with Laravel', 'Laravellaravellaravellaravel']);
 
-}); */
+});
 
 /* Route::get('/read', function () {
 
@@ -71,4 +73,100 @@ Route::get('/post/{id}', 'PostsController@showPost'); */
 /* Route::get('/delete', function () {
     $deleted = DB::delete('delete from posts where id = ?', [1]);
     return $deleted;
+});
+ */
+
+// ELOQUENT
+
+/* Route::get('/read', function () {
+    
+    $posts = Post::all();
+
+    foreach($posts as $post){
+        return $post->title;
+    }
+
+}); */
+
+/* Route::get('/find', function () {
+    
+    $posts = Post::find(2);
+
+    
+        return $posts->content;
+    
+
+}); */
+
+/* Route::get('/findwhere', function(){
+    $posts = Post::where('id', 2)->orderBy('id', 'desc')->take(1)->get();
+
+    return $posts;
+}); */
+
+/* Route::get('/findmore', function () {
+    $posts = Post::findOrFail(1);
+
+    $posts = Post::where('users_count', '<', 50)->firstOrFail();
+
+    return $posts;
+}); */
+
+
+/* Route::get('/basicinsert', function () {
+    
+    $post = new Post;
+
+    $post->title = 'new eloquent title insert';
+    $post->content = 'contentcontentcontentcontentcontent';
+
+    $post->save();
+
+}); */
+/* Route::get('/basicinsert', function () {
+    
+    $post = Post::find(2);
+
+    $post->title = 'new eloquent title insert 2';
+    $post->content = 'contentcontent2';
+
+    $post->save();
+
+}); */
+
+/* Route::get('/create', function () {
+    Post::create(['title'=>'the create method', 'content'=>'xddddddd']);
+});
+
+ */
+
+/* Route::get('/update', function () {
+    Post::where('id', 2)->where('is_admin', 0)->update(['title'=>'updated stuff', 'content'=>'yapppppppp']);
+}); */
+
+/* Route::get('/delete', function () {
+    $post = Post::find(8);
+
+    $post->delete();
+}); */
+
+/* Route::get('/softdelete', function () {
+   
+    Post::find(5)->delete();
+
+}); */
+
+/* Route::get('/readsoftdelete', function () {
+   
+    $post = Post::onlyTrashed()->get();
+    return $post;
+
+}); */
+
+/* Route::get('/restore', function () {
+    Post::withTrashed()->restore();
+}); */
+
+/* Route::get('/forcedelete', function () {
+    Post::onlyTrashed()->forceDelete();
 }); */
